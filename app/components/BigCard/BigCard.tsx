@@ -4,14 +4,14 @@ import Image from "next/image";
 
 export default function BigCard() {
     return (
-        <div className="relative w-full overflow-hidden rounded-lg border border-[#000049] col-span-4 order-1 md:order-0 transform:translateZ(0)">
+        <div className="relative w-full overflow-hidden rounded-lg shadow-[inset_0_0_0_1px_#000049] col-span-4 order-1 md:order-0">
             <Image
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/bg-today-small.svg`}
                 alt=""
                 fill
                 priority
                 sizes="100vw"
-                className="object-cover sm:hidden rounded-lg"
+                className="object-cover sm:hidden"
             />
             <Image
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/bg-today-large.svg`}
@@ -19,7 +19,7 @@ export default function BigCard() {
                 fill
                 priority
                 sizes="100vw"
-                className="hidden object-cover sm:block rounded-lg"
+                className="hidden object-cover sm:block"
             />
             <div className="relative z-10 flex flex-col rounded-lg justify-between items-center lg:flex-row w-full sm:py-16 sm:px-5 py-8 px-5 text-white">
                 <div className="flex flex-col items-center gap-2 sm:items-start mb-4">
