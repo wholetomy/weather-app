@@ -4,20 +4,22 @@ import Image from "next/image";
 
 export default function BigCard() {
     return (
-        <div className="relative overflow-hidden rounded-lg border border-[#000049] col-span-4 order-1 md:order-0">
+        <div className="relative w-full overflow-hidden rounded-lg border border-[#000049] col-span-4 order-1 md:order-0">
             <Image
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/bg-today-small.svg`}
                 alt=""
                 fill
                 priority
-                className="object-cover sm:hidden"
+                sizes="100vw"
+                className="object-cover sm:hidden rounded-lg"
             />
             <Image
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/bg-today-large.svg`}
                 alt=""
                 fill
                 priority
-                className="hidden object-cover sm:block"
+                sizes="100vw"
+                className="hidden object-cover sm:block rounded-lg"
             />
             <div className="relative z-10 flex flex-col rounded-lg justify-between items-center lg:flex-row w-full sm:py-16 sm:px-5 py-8 px-5 text-white">
                 <div className="flex flex-col items-center gap-2 sm:items-start mb-4">
