@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function BigCard() {
     return (
-        <div className="relative w-full overflow-hidden rounded-lg border border-[#000049] col-span-4 order-1 md:order-0">
+        <div className="relative w-full overflow-hidden rounded-lg border border-[#000049] col-span-4 order-1 md:order-0 transform:translateZ(0)">
             <Image
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/bg-today-small.svg`}
                 alt=""
