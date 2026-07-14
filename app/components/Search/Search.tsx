@@ -149,7 +149,7 @@ export default function Search({
           {isCountriesAndCitiesSearchLoading ? (
             <div className="absolute bg-[#25253F] w-full top-full mt-2 left-0 rounded-lg p-2 flex items-center gap-2">
               <Image
-                src="/icon-loading.svg"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/icon-loading.svg`}
                 alt="loading icon"
                 width={20}
                 height={20}

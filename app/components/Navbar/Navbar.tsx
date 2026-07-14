@@ -46,7 +46,7 @@ export default function Navbar({
         <div className="flex justify-between">
             <div className="lg:w-52 sm:w-52 w-40 h-12 relative mb-10">
                 <Image
-                    src="/logo.svg"
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.svg`}
                     alt="logo"
                     fill
                     className="object-contain"
