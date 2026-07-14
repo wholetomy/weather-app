@@ -66,7 +66,7 @@ export default function Navbar({
                     <IoIosArrowDown />
                 </button>
                 {isUnitsOpened && (
-                    <div className="absolute z-10 flex flex-col gap-2 text-white w-50 bg-[#25253F] right-0 mt-2 p-1 transition-all duration-200 ease-in-out rounded-lg border-2 border-[#3B3A5C]">
+                    <div className="absolute z-30 flex flex-col gap-2 text-white w-50 bg-[#25253F] right-0 mt-2 p-1 transition-all duration-200 ease-in-out rounded-lg border-2 border-[#3B3A5C]">
                         <div className="flex gap-1 flex-col px-1 pb-2 border-b border-[#3B3B57]">
                             <div
                                 className="hover:bg-[#2F2F49] rounded-lg px-1 py-1 transition duration-200 ease-in-out cursor-pointer"

@@ -147,7 +147,7 @@ export default function Search({
           </div>
 
           {isCountriesAndCitiesSearchLoading ? (
-            <div className="absolute bg-[#25253F] w-full top-full mt-2 left-0 rounded-lg p-2 flex items-center gap-2">
+            <div className="absolute z-20 bg-[#25253F] w-full top-full mt-2 left-0 rounded-lg p-2 flex items-center gap-2">
               <Image
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/icon-loading.svg`}
                 alt="loading icon"
@@ -160,7 +160,7 @@ export default function Search({
             </div>
           ) : (
             countriesAndCities.length > 0 && (
-              <div className="absolute bg-[#25253F] w-full top-full mt-2 left-0 rounded-lg p-1">
+              <div className="absolute z-20 bg-[#25253F] w-full top-full mt-2 left-0 rounded-lg p-1">
                 {countriesAndCities.map((item: CountriesAndCitiesInterface) => {
                   const localizacao = item.admin2 && item.admin2 !== item.name ? item.admin2 : item.admin1;
                   return (
