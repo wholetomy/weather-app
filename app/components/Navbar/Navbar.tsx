@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image"
+import Image from "next/image";
 import { VscGear } from "react-icons/vsc";
 import { IoIosArrowDown } from "react-icons/io";
 import { useState, useRef, useEffect } from "react";
@@ -9,9 +9,9 @@ import { IoMdCheckmark } from "react-icons/io";
 interface NavbarProps {
     whichTemperatureUnitIsSelected: "celsius" | "fahrenheit";
     setWhichTemperatureUnitIsSelected: (valor: "celsius" | "fahrenheit") => void;
-    whichWindSpeedUnitIsSelected: "kmh" | "mph"
+    whichWindSpeedUnitIsSelected: "kmh" | "mph";
     setWhichWindSpeedUnitIsSelected: (valor: "kmh" | "mph") => void;
-    whichPrecipitationUnitIsSelected: "mm" | "inch"
+    whichPrecipitationUnitIsSelected: "mm" | "inch";
     setWhichPrecipitationUnitIsSelected: (valor: "mm" | "inch") => void;
 }
 

@@ -19,6 +19,12 @@ const dmSans = localFont({
   preload: true,
 });
 
+const dmSansItalic = localFont({
+  src: "./fonts/DMSans-Italic-VariableFont_opsz,wght.ttf",
+  variable: "--font-dm-sans-italic",
+  preload: false,
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${bricolageGrotesque.variable} ${dmSans.variable} font-dmsans`}>
+      <body className={`${bricolageGrotesque.variable} ${dmSans.variable} ${dmSansItalic.variable} font-dmsans`}>
         {children}
       </body>
     </html>

@@ -126,7 +126,7 @@ export default function Search({
   };
 
   return (
-    <div className="flex justify-center flex-col items-center  text-white">
+    <div className="flex justify-center flex-col items-center mb-4 text-white">
       <h1 className="mb-10 text-5xl font-bold text-center font-bricolage">How's the sky looking today?</h1>
       <div
         className="flex items-center flex-wrap gap-2 w-full md:w-auto"
