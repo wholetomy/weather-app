@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Search from "./components/Search/Search";
 import BigCard from "./components/BigCard/BigCard";
+import HourlyForecast from "./components/HourlyForecast/HourlyForecast";
 import type { InformacoesMeteorologicasInterface } from "./interfaces/InformacoesMeteorologicasInterface";
 
 export default function Home() {
@@ -12,12 +13,27 @@ export default function Home() {
   const [whichPrecipitationUnitIsSelected, setWhichPrecipitationUnitIsSelected] = useState<"mm" | "inch">("mm");
   const [latitudeLongitude, setLatitudeLongitude] = useState<{ latitude: number, longitude: number } | null>(null);
   const [informacoesMeteorologicas, setInformacoesMeteorologicas] = useState<InformacoesMeteorologicasInterface | null>(null);
+  const [nomeDoPaisECidadeSelecionado, setNomeDoPaisECidadeSelecionado] = useState<string>("");
+  const [isSearchBeingDone, setIsSearchBeingDone] = useState<boolean>(false);
+
+  const berlin = {
+    latitude: 52.52,
+    longitude: 13.405,
+  };
+
+  useEffect(() => {
+    setLatitudeLongitude(berlin);
+    setNomeDoPaisECidadeSelecionado("Berlin, Germany");
+  }, []);
+
+
 
   const Seila = () => {
     console.log("informacoesMeteorologicas: ", informacoesMeteorologicas)
+    console.log("nomeDoPaisECidadeSelecionado", nomeDoPaisECidadeSelecionado)
   };
 
-  Seila();
+  //Seila();
 
   return (
     <div className="min-h-screen bg-[#02012B] sm:px-20 sm:py-10 px-5 py-5 transition duration-200 ease-in-out">
@@ -36,13 +52,20 @@ export default function Home() {
         whichWindSpeedUnitIsSelected={whichWindSpeedUnitIsSelected}
         whichPrecipitationUnitIsSelected={whichPrecipitationUnitIsSelected}
         setInformacoesMeteorologicas={setInformacoesMeteorologicas}
+        setNomeDoPaisECidadeSelecionado={setNomeDoPaisECidadeSelecionado}
+        setIsSearchBeingDone={setIsSearchBeingDone}
       />
 
-      <div className="md:grid md:grid-cols-6 md:grid-rows-3 md:gap-4 flex flex-col gap-4 text-white">
-        <BigCard />
-        <div className="col-span-2 row-span-3 bg-gray-500 order-4 md:order-0">
-          <div className="bg-gray-600">yay</div>
-        </div>
+      <div className="md:grid md:grid-cols-6 md:grid-rows-[220px_220px_220px] md:gap-4 flex flex-col gap-4 text-white">
+        <BigCard
+          informacoesMeteorologicas={informacoesMeteorologicas}
+          nomeDoPaisECidadeSelecionado={nomeDoPaisECidadeSelecionado}
+          isSearchBeingDone={isSearchBeingDone}
+        />
+        <HourlyForecast
+          informacoesMeteorologicas={informacoesMeteorologicas}
+          isSearchBeingDone={isSearchBeingDone}
+        />
         <div className="col-span-4 bg-gray-700 grid grid-cols-4 gap-2 order-2 md:order-0">
           <div className="bg-gray-800">01</div>
           <div className="bg-gray-800">02</div>

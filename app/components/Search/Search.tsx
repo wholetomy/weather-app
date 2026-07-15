@@ -13,6 +13,8 @@ interface SearchProps {
   whichWindSpeedUnitIsSelected: "kmh" | "mph";
   whichPrecipitationUnitIsSelected: "mm" | "inch";
   setInformacoesMeteorologicas: (valor: InformacoesMeteorologicasInterface | null) => void;
+  setNomeDoPaisECidadeSelecionado: (valor: string) => void;
+  setIsSearchBeingDone: (valor: boolean) => void;
 }
 
 export default function Search({
@@ -21,14 +23,21 @@ export default function Search({
   whichTemperatureUnitIsSelected,
   whichWindSpeedUnitIsSelected,
   whichPrecipitationUnitIsSelected,
-  setInformacoesMeteorologicas
+  setInformacoesMeteorologicas,
+  setNomeDoPaisECidadeSelecionado,
+  setIsSearchBeingDone
 }: SearchProps) {
   const [countriesAndCities, setCountriesAndCities] = useState<CountriesAndCitiesInterface[]>([]);
   const [valorDigitado, setValorDigitado] = useState<string>("");
   const [localidadeSelecionada, setLocalidadeSelecionada] = useState<boolean>(false);
   const [isCountriesAndCitiesSearchLoading, setIsCountriesAndCitiesSearchLoading] = useState<boolean>(false);
-
   const [searchWasPerformed, setSearchWasPerformed] = useState(false);
+
+  useEffect(() => {
+    if (!latitudeLongitude) return;
+
+    BuscarInformacoesMeteorologicasPorCidadeSelecionada();
+  }, [latitudeLongitude]);
 
   useEffect(() => {
     if (localidadeSelecionada) return;
@@ -59,12 +68,10 @@ export default function Search({
       return;
     };
 
-    //setIsCountriesAndCitiesSearchLoading(true);
-
     const params = new URLSearchParams({
       name: parametroDigitadoPeloUsuarioLimpo,
       count: "4",
-      language: "pt",
+      language: "en", // or "pt"
       format: "json"
     });
 
@@ -96,13 +103,16 @@ export default function Search({
   };
 
   const BuscarInformacoesMeteorologicasPorCidadeSelecionada = async () => {
-    if (!latitudeLongitude) return;
+    if (!latitudeLongitude) {
+      setIsSearchBeingDone(false);
+      return;
+    };
 
     const params = new URLSearchParams({
       latitude: String(latitudeLongitude.latitude),
       longitude: String(latitudeLongitude.longitude),
-      current: "temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,apparent_temperature",
-      hourly: "temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,apparent_temperature",
+      current: "temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,apparent_temperature,weather_code",
+      hourly: "temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,apparent_temperature,weather_code",
       timezone: "America/Sao_Paulo",
       temperature_unit: whichTemperatureUnitIsSelected,
       windspeed_unit: whichWindSpeedUnitIsSelected,
@@ -112,6 +122,7 @@ export default function Search({
     const url = `https://api.open-meteo.com/v1/forecast?${params}`;
 
     try {
+      setIsSearchBeingDone(true);
       const response = await fetch(url);
 
       if (!response.ok) {
@@ -122,6 +133,8 @@ export default function Search({
       setInformacoesMeteorologicas(result);
     } catch (error) {
       console.error("There is an issue with the 'BuscarInformacoesMeteorologicasPorCidadeSelecionada' function: ", error);
+    } finally {
+      setIsSearchBeingDone(false);
     }
   };
 
@@ -169,6 +182,7 @@ export default function Search({
                       key={item.id}
                       onClick={() => {
                         setLatitudeLongitude({ latitude: item.latitude, longitude: item.longitude });
+                        setNomeDoPaisECidadeSelecionado(`${item.name}, ${item.country}`);
                         setValorDigitado(item.name);
                         setLocalidadeSelecionada(true);
                         setCountriesAndCities([]);

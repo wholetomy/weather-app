@@ -14,6 +14,7 @@ export interface InformacoesMeteorologicasInterface {
     wind_speed_10m: string;
     precipitation: string;
     apparent_temperature: string;
+    weather_code: string;
   };
   current: {
     time: string;
@@ -23,6 +24,7 @@ export interface InformacoesMeteorologicasInterface {
     wind_speed_10m: number;
     precipitation: number;
     apparent_temperature: number;
+    weather_code: number;
   };
   hourly_units: {
     time: string;
@@ -31,6 +33,7 @@ export interface InformacoesMeteorologicasInterface {
     wind_speed_10m: string;
     precipitation: string;
     apparent_temperature: string;
+    weather_code: string;
   };
   hourly: {
     time: string[];
@@ -39,5 +42,6 @@ export interface InformacoesMeteorologicasInterface {
     wind_speed_10m: number[];
     precipitation: number[];
     apparent_temperature: number[];
+    weather_code: number[];
   };
 }
