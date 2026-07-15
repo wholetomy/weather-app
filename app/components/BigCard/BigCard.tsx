@@ -24,7 +24,7 @@ export default function BigCard({
 
     if (isSearchBeingDone) {
         return (
-            <div className="bg-[#262640] h-[224px] w-full rounded-lg col-span-4 order-1 md:order-0 relative z-10 gap-2 flex flex-col justify-center items-center text-white">
+            <div className="bg-[#262640] h-56 w-full rounded-lg col-span-4 order-1 md:order-0 relative z-10 gap-2 flex flex-col justify-center items-center text-white">
                 <div className="flex items-center justify-center gap-2">
                     <div className="w-3 h-3 bg-[#D0CFE1] rounded-full animate-bounce [animation-delay:-0.3s]"></div>
                     <div className="w-3 h-3 bg-[#D0CFE1] rounded-full animate-bounce [animation-delay:-0.15s]"></div>

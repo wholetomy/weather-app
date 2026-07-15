@@ -18,6 +18,7 @@ export default function HourlyForecast({
     const [isHourlyForecastDropDownOpened, setIsHourlyForecastDropDownOpened] = useState<boolean>(false);
     const [whichDayIsClicked, setWhichDayIsClicked] = useState<string>("");
     const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
     useEffect(() => {
         const diaDaSemanaEmNumero = new Date().getDay();
@@ -47,25 +48,32 @@ export default function HourlyForecast({
     };
 
     const FuncaoParaMostrarIconeCorreto = (valor: number) => {
+        let icon = "icon-overcast.webp";
+
         switch (valor) {
             case 0:
-                return "/icon-sunny.webp";
+                icon = "icon-sunny.webp";
+                break;
 
             case 1:
             case 2:
-                return "/icon-partly-cloudy.webp";
+                icon = "icon-partly-cloudy.webp";
+                break;
 
             case 3:
-                return "/icon-overcast.webp";
+                icon = "icon-overcast.webp";
+                break;
 
             case 45:
             case 48:
-                return "/icon-fog.webp";
+                icon = "icon-fog.webp";
+                break;
 
             case 51:
             case 53:
             case 55:
-                return "/icon-drizzle.webp";
+                icon = "icon-drizzle.webp";
+                break;
 
             case 61:
             case 63:
@@ -73,21 +81,23 @@ export default function HourlyForecast({
             case 80:
             case 81:
             case 82:
-                return "/icon-rain.webp";
+                icon = "icon-rain.webp";
+                break;
 
             case 71:
             case 73:
             case 75:
-                return "/icon-snow.webp";
+                icon = "icon-snow.webp";
+                break;
 
             case 95:
             case 96:
             case 99:
-                return "/icon-storm.webp";
-
-            default:
-                return "/icon-overcast.webp";
+                icon = "icon-storm.webp";
+                break;
         }
+
+        return `${BASE_PATH}/${icon}`;
     };
 
     return (
