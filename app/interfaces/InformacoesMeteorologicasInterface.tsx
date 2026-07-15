@@ -44,4 +44,16 @@ export interface InformacoesMeteorologicasInterface {
     apparent_temperature: number[];
     weather_code: number[];
   };
+  daily: {
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+    time: string[];
+    weather_code: number[];
+  };
+  daily_units: {
+    temperature_2m_max: string;
+    temperature_2m_min: string;
+    time: string;
+    weather_code: string;
+  }
 }

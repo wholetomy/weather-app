@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Search from "./components/Search/Search";
 import BigCard from "./components/BigCard/BigCard";
 import Cards from "./components/Cards/Cards";
+import DailyForecast from "./components/DailyForecast/DailyForecast";
 import HourlyForecast from "./components/HourlyForecast/HourlyForecast";
 import type { InformacoesMeteorologicasInterface } from "./interfaces/InformacoesMeteorologicasInterface";
 
@@ -27,15 +28,6 @@ export default function Home() {
     setNomeDoPaisECidadeSelecionado("Berlin, Germany");
   }, []);
 
-
-
-  const Seila = () => {
-    console.log("informacoesMeteorologicas: ", informacoesMeteorologicas)
-    console.log("nomeDoPaisECidadeSelecionado", nomeDoPaisECidadeSelecionado)
-  };
-
-  //Seila();
-
   return (
     <div className="min-h-screen bg-[#02012B] sm:px-20 sm:py-10 px-5 py-5 transition duration-200 ease-in-out">
       <Navbar
@@ -56,8 +48,7 @@ export default function Home() {
         setNomeDoPaisECidadeSelecionado={setNomeDoPaisECidadeSelecionado}
         setIsSearchBeingDone={setIsSearchBeingDone}
       />
-
-      <div className="md:grid md:grid-cols-6 md:grid-rows-[220px_120px_220px] md:gap-4 flex flex-col gap-4 text-white">
+      <div className="grid md:grid-cols-6 md:grid-rows-[220px_120px_160px] md:gap-4 grid-cols-1 gap-y-4 text-white">
         <BigCard
           informacoesMeteorologicas={informacoesMeteorologicas}
           nomeDoPaisECidadeSelecionado={nomeDoPaisECidadeSelecionado}
@@ -71,17 +62,11 @@ export default function Home() {
           informacoesMeteorologicas={informacoesMeteorologicas}
           isSearchBeingDone={isSearchBeingDone}
         />
-        <div className="col-span-4 bg-gray-900 grid grid-cols-7 gap-2 order-3 md:order-0">
-          <div className="bg-gray-950">01</div>
-          <div className="bg-gray-950">02</div>
-          <div className="bg-gray-950">03</div>
-          <div className="bg-gray-950">04</div>
-          <div className="bg-gray-950">05</div>
-          <div className="bg-gray-950">06</div>
-          <div className="bg-gray-950">07</div>
-        </div>
+        <DailyForecast
+          informacoesMeteorologicas={informacoesMeteorologicas}
+          isSearchBeingDone={isSearchBeingDone}
+        />
       </div>
-
-    </div>
+    </div >
   );
 }

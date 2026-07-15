@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import type { InformacoesMeteorologicasInterface } from "../../interfaces/InformacoesMeteorologicasInterface";
 
 interface CardsProps {
@@ -12,8 +11,6 @@ export default function Cards({
     informacoesMeteorologicas,
     isSearchBeingDone
 }: CardsProps) {
-
-
 
     const cards = [
         {
@@ -37,7 +34,6 @@ export default function Cards({
             unit: informacoesMeteorologicas?.current_units.precipitation
         },
     ]
-
 
     return (
         <div className="col-span-4 grid md:grid-cols-4 grid-cols-2 gap-4 order-2 md:order-0">

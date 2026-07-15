@@ -113,6 +113,7 @@ export default function Search({
       longitude: String(latitudeLongitude.longitude),
       current: "temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,apparent_temperature,weather_code",
       hourly: "temperature_2m,relative_humidity_2m,wind_speed_10m,precipitation,apparent_temperature,weather_code",
+      daily: "temperature_2m_max,temperature_2m_min,weather_code",
       timezone: "America/Sao_Paulo",
       temperature_unit: whichTemperatureUnitIsSelected,
       windspeed_unit: whichWindSpeedUnitIsSelected,

@@ -101,7 +101,7 @@ export default function HourlyForecast({
     };
 
     return (
-        <div className="col-span-2 row-span-3 bg-[#25253F] order-4 md:order-0 p-4 md:h-full h-100 overflow-y-auto scrollbar-thin scrollbar-thumb-[#3B3A5C] scrollbar-track-[#25253F]">
+        <div className="md:col-span-2 md:row-span-3 bg-[#25253F] order-4 md:order-0 p-4 h-125 md:h-full overflow-y-auto scrollbar-thin scrollbar-thumb-[#3B3A5C] scrollbar-track-[#25253F]">
             <div className="flex justify-between items-center flex-wrap">
                 <h1 className="font-medium text-md">Hourly forecast</h1>
                 <div
@@ -137,7 +137,7 @@ export default function HourlyForecast({
                     )}
                 </div>
             </div>
-            <div className="flex gap-2 min-h-0 flex-col mt-2">
+            <div className="flex gap-2 flex-col mt-2">
                 {isSearchBeingDone ? (
                     Array.from({ length: 24 }).map((_, index) => (
                         <div key={index} className="bg-[#2F2F49] w-full h-10 rounded-sm animate-pulse [animation-duration:2s]" />
@@ -154,12 +154,6 @@ export default function HourlyForecast({
                         if (dayName !== whichDayIsClicked) {
                             return null;
                         }
-
-                        console.log({
-                            time: timeOfTheDay,
-                            weatherCode,
-                            dayName
-                        });
 
                         return (
                             <div key={index} className="bg-[#2F2F49] w-full h-10 rounded-sm flex items-center justify-between gap-4">
