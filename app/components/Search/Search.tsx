@@ -35,7 +35,9 @@ export default function Search({
   const [valorDigitado, setValorDigitado] = useState<string>("");
   const [localidadeSelecionada, setLocalidadeSelecionada] = useState<boolean>(false);
   const [isCountriesAndCitiesSearchLoading, setIsCountriesAndCitiesSearchLoading] = useState<boolean>(false);
-  const [searchWasPerformed, setSearchWasPerformed] = useState(false);
+  const [searchWasPerformed, setSearchWasPerformed] = useState<boolean>(false);
+  const [usuarioJaDigitou, setUsuarioJaDigitou] = useState<boolean>(false);
+
 
   useEffect(() => {
     if (!latitudeLongitude) return;
@@ -47,10 +49,13 @@ export default function Search({
     if (localidadeSelecionada) return;
 
     if (!valorDigitado.trim()) {
+      if (!usuarioJaDigitou) return;
       setSearchWasPerformed(false);
       setCountriesAndCities([]);
       setIsCountriesAndCitiesSearchLoading(false);
       setLatitudeLongitude(null);
+      setInformacoesMeteorologicas(null);
+      setShowWeatherGrid(false);
       return;
     }
 
@@ -164,9 +169,9 @@ export default function Search({
               placeholder="Search for a place..."
               value={valorDigitado}
               onChange={(e) => {
+                setUsuarioJaDigitou(true);
                 setValorDigitado(e.target.value);
                 setLocalidadeSelecionada(false);
-                setShowWeatherGrid(true);
               }}
             />
           </div>
