@@ -15,6 +15,8 @@ interface SearchProps {
   setInformacoesMeteorologicas: (valor: InformacoesMeteorologicasInterface | null) => void;
   setNomeDoPaisECidadeSelecionado: (valor: string) => void;
   setIsSearchBeingDone: (valor: boolean) => void;
+  setDeuErroNaApi: (valor: boolean) => void;
+  setShowWeatherGrid: (valor: boolean) => void;
 }
 
 export default function Search({
@@ -25,7 +27,9 @@ export default function Search({
   whichPrecipitationUnitIsSelected,
   setInformacoesMeteorologicas,
   setNomeDoPaisECidadeSelecionado,
-  setIsSearchBeingDone
+  setIsSearchBeingDone,
+  setDeuErroNaApi,
+  setShowWeatherGrid
 }: SearchProps) {
   const [countriesAndCities, setCountriesAndCities] = useState<CountriesAndCitiesInterface[]>([]);
   const [valorDigitado, setValorDigitado] = useState<string>("");
@@ -87,10 +91,12 @@ export default function Search({
 
       if (result.results) {
         setCountriesAndCities(result.results);
+        setShowWeatherGrid(true);
       } else {
         setCountriesAndCities([]);
         setInformacoesMeteorologicas(null);
         setLatitudeLongitude(null);
+        setShowWeatherGrid(false);
       }
 
       return result;
@@ -124,6 +130,8 @@ export default function Search({
 
     try {
       setIsSearchBeingDone(true);
+      setDeuErroNaApi(false);
+
       const response = await fetch(url);
 
       if (!response.ok) {
@@ -134,6 +142,8 @@ export default function Search({
       setInformacoesMeteorologicas(result);
     } catch (error) {
       console.error("There is an issue with the 'BuscarInformacoesMeteorologicasPorCidadeSelecionada' function: ", error);
+      setInformacoesMeteorologicas(null);
+      setDeuErroNaApi(true);
     } finally {
       setIsSearchBeingDone(false);
     }
@@ -156,6 +166,7 @@ export default function Search({
               onChange={(e) => {
                 setValorDigitado(e.target.value);
                 setLocalidadeSelecionada(false);
+                setShowWeatherGrid(true);
               }}
             />
           </div>
