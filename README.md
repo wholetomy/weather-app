@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weather App
 
-## Getting Started
+Projeto desenvolvido como solução para um desafio do Frontend Mentor.
 
-First, run the development server:
+## Sobre
+
+Aplicação que consome a API de meteorologia e permite:
+
+- visualizar informações meteorológicas de hora a hora da semana inteira ou de um dia específico
+- visualizar informações meteorológicas dia a dia da semana inteira
+- alternar entre sistema métrico e imperial
+- pesquisar cidade por nome
+- visualizar o loading durante um fetch da API
+
+---
+
+## Tecnologias
+
+- React
+- TypeScript
+- Tailwind
+- NextJS
+- Github Actions
+
+---
+
+## Preview
+
+Link: https://wholetomy.github.io/weather-app/
+
+
+![Markdown Logo](preview.jpg)
+
+---
+
+## O que aprendi
+
+- Criação e estruturação de projeto em NextJS
+- Utilização de imagens em NextJS
+- Consumo de APIs
+- Estilização em gridbox com Tailwind
+- Tipagem com TypeScript
+- Criação de interfaces responsivas com Tailwind
+- Utilização de fontes externas em NextJS
+- Lidar com chamadas em APIs externas
+
+---
+
+## Instalação
 
 ```bash
+git clone https://github.com/wholetomy/weather-app
+
+cd weather-app
+
+npm install
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Melhorias futuras
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Testes unitários
+- Adição de um backend
+- Permitir comparação entre cidades
+- Criação de um tema em light mode
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Autor
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Thomas Campanholi
