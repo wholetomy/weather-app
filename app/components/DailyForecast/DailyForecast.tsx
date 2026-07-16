@@ -12,19 +12,8 @@ export default function DailyForecast({
     informacoesMeteorologicas,
     isSearchBeingDone
 }: DailyForecastProps) {
-    const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-    const dailyForecastCards = informacoesMeteorologicas?.daily.time.map((date, index) => ({
-        dayOfTheWeekIn3Letters: new Date(date).toLocaleDateString(
-            "en-US",
-            { weekday: "short" }
-        ),
-        icon: informacoesMeteorologicas.daily.weather_code[index],
-        maxTemperature: informacoesMeteorologicas.daily.temperature_2m_max[index],
-        maxTemperatureUnit: informacoesMeteorologicas.daily_units.temperature_2m_max,
-        minTemperature: informacoesMeteorologicas.daily.temperature_2m_min[index],
-        minTemperatureUnit: informacoesMeteorologicas.daily_units.temperature_2m_min,
-    })) ?? [];
+    const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
     const FuncaoParaMostrarIconeCorreto = (valor: number) => {
         let icon = "icon-overcast.webp";
@@ -79,57 +68,75 @@ export default function DailyForecast({
         return `${BASE_PATH}/${icon}`;
     };
 
+    if (isSearchBeingDone) {
+        return (
+            <div className="col-span-4 order-3 md:order-0">
+                <h1 className="mb-2 text-lg font-medium">
+                    Daily forecast
+                </h1>
+
+                <div className="grid md:grid-cols-7 grid-cols-3 gap-2">
+                    {Array.from({ length: 7 }).map((_, index) => (
+                        <div
+                            key={index}
+                            className="h-35 flex flex-col items-center gap-4 p-2 bg-[#25253F] border-2 border-[#3C3B5D] rounded-lg"
+                        />
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    if (!informacoesMeteorologicas) {
+        return null;
+    }
+
+    const dailyForecastCards = informacoesMeteorologicas.daily.time.map((date, index) => ({
+        dayOfTheWeekIn3Letters: new Date(date).toLocaleDateString("en-US", {
+            weekday: "short"
+        }),
+        icon: informacoesMeteorologicas.daily.weather_code[index],
+        maxTemperature: informacoesMeteorologicas.daily.temperature_2m_max[index],
+        maxTemperatureUnit: informacoesMeteorologicas.daily_units.temperature_2m_max,
+        minTemperature: informacoesMeteorologicas.daily.temperature_2m_min[index],
+        minTemperatureUnit: informacoesMeteorologicas.daily_units.temperature_2m_min,
+    }));
+
     return (
-        <>
-            {!isSearchBeingDone ? (
-                <div className="col-span-4 order-3 md:order-0">
-                    <h1 className="mb-2 text-lg font-medium">
-                        Daily forecast
-                    </h1>
+        <div className="col-span-4 order-3 md:order-0">
+            <h1 className="mb-2 text-lg font-medium">
+                Daily forecast
+            </h1>
 
-                    <div className="grid md:grid-cols-7 grid-cols-3 gap-2">
-                        {dailyForecastCards.map((card, index) => (
-                            <div
-                                key={index}
-                                className="flex flex-col space-between items-center gap-4 p-2 bg-[#25253F] border-2 border-[#3C3B5D] rounded-lg"
-                            >
-                                <div>{card.dayOfTheWeekIn3Letters}</div>
-                                <div>
-                                    <Image
-                                        src={FuncaoParaMostrarIconeCorreto(card.icon)}
-                                        alt=""
-                                        width={40}
-                                        height={40}
-                                    />
-                                </div>
-                                <div className="flex justify-between items-center w-full min-w-0">
-                                    <div className="truncate">
-                                        {card.maxTemperature.toFixed()}
-                                        {card.maxTemperatureUnit}
-                                    </div>
-                                    <div className="truncate">
-                                        {card.minTemperature.toFixed()}
-                                        {card.minTemperatureUnit}
-                                    </div>
-                                </div>
+            <div className="grid md:grid-cols-7 grid-cols-3 gap-2">
+                {dailyForecastCards.map((card, index) => (
+                    <div
+                        key={index}
+                        className="flex flex-col items-center gap-4 p-2 bg-[#25253F] border-2 border-[#3C3B5D] rounded-lg"
+                    >
+                        <div>{card.dayOfTheWeekIn3Letters}</div>
+
+                        <Image
+                            src={FuncaoParaMostrarIconeCorreto(card.icon)}
+                            alt=""
+                            width={40}
+                            height={40}
+                        />
+
+                        <div className="flex justify-between items-center w-full min-w-0">
+                            <div className="truncate">
+                                {card.maxTemperature.toFixed()}
+                                {card.maxTemperatureUnit}
                             </div>
-                        ))}
-                    </div>
-                </div>
-            ) : (
-                <div className="col-span-4 order-3 md:order-0">
-                    <h1 className="mb-2 text-lg font-medium">
-                        Daily forecast
-                    </h1>
 
-                    <div className="grid md:grid-cols-7 grid-cols-3 gap-2">
-                        {Array.from({ length: 7 }).map((_, index) => (
-                            <div key={index} className="h-35 flex flex-col space-between items-center gap-4 p-2 bg-[#25253F] border-2 border-[#3C3B5D] rounded-lg" />
-                        ))}
+                            <div className="truncate">
+                                {card.minTemperature.toFixed()}
+                                {card.minTemperatureUnit}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            )}
-
-        </>
-    )
+                ))}
+            </div>
+        </div>
+    );
 }

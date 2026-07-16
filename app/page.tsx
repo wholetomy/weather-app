@@ -48,7 +48,7 @@ export default function Home() {
         setNomeDoPaisECidadeSelecionado={setNomeDoPaisECidadeSelecionado}
         setIsSearchBeingDone={setIsSearchBeingDone}
       />
-      <div className="grid md:grid-cols-6 md:grid-rows-[220px_120px_160px] md:gap-4 grid-cols-1 gap-y-4 text-white">
+      <div className="grid md:grid-cols-6 md:grid-rows-[220px_120px_175px] md:gap-4 grid-cols-1 gap-y-4 text-white">
         <BigCard
           informacoesMeteorologicas={informacoesMeteorologicas}
           nomeDoPaisECidadeSelecionado={nomeDoPaisECidadeSelecionado}

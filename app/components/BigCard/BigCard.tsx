@@ -55,7 +55,7 @@ export default function BigCard({
                         sizes="100vw"
                         className="hidden object-cover sm:block"
                     />
-                    <div className="relative z-10 flex flex-col rounded-lg justify-between items-center lg:flex-row w-full sm:py-16 sm:px-5 py-8 px-5 text-white">
+                    <div className="relative z-10 flex flex-col rounded-lg justify-between items-center md:flex-row w-full sm:py-16 sm:px-6 py-8 px-5 text-white">
                         <div className="flex flex-col items-center gap-2 sm:items-start mb-4">
                             <h2 className="font-semibold text-2xl text-center">{nomeDoPaisECidadeSelecionado}</h2>
                             <span className="text-[#C5CCFF] text-center">{diaAtualFormatado}</span>
@@ -71,8 +71,6 @@ export default function BigCard({
                     </div>
                 </div>
             )}
-
-
         </>
     )
 }
